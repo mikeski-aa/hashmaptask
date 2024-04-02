@@ -98,9 +98,9 @@
 
         if (map[arrIndex] === undefined) {
           return false;
-        } else if ((map[arrIndex].next === null && map[arrIndex].key === key)) {
-          console.log('test');
-          return map[arrIndex] = null;
+        } else if (map[arrIndex].next === null && map[arrIndex].key === key) {
+          console.log("test");
+          return (map[arrIndex] = null);
         } else {
           removeNodeFromLL(map[arrIndex], key);
         }
@@ -147,25 +147,68 @@
       const clear = () => {
         map = [];
         return map;
-      }
-     // get all keys in hash map
+      };
+      // get all keys in hash map
       const keys = () => {
         for (x of map) {
-          if (x != null){
+          if (x != null) {
             getKeys(x);
-          }}};
-     
-    // go through LL and grab keys
+          }
+        }
+      };
+
+      // go through LL and grab keys
       const getKeys = (node) => {
         console.log(node.key);
         if (node.next === null) {
-          return console.log('End of list');
+          return console.log("End of linked list");
         } else {
           return getKeys(node.next);
         }
       };
 
+      // get all keys in hash map
+      const values = () => {
+        for (x of map) {
+          if (x != null) {
+            getValues(x);
+          }
+        }
+      };
+
+      // go through LL and grab keys
+      const getValues = (node) => {
+        console.log(node.value);
+        if (node.next === null) {
+          return console.log("End of linked list");
+        } else {
+          return getValues(node.next,);
+        }
+      };
+      // log entires 
+      const entries = () => {
+        let entArr = [];
+        
+        for (x of map){
+          if (x != null) {
+            getEntries(x, entArr);
+          }
+        }
+        console.log(entArr);
+      }
+      // grab entires from LL
+      const getEntries = (node, entArr) => {
+        if (node.next === null) {
+          return entArr.push(node.key, node.value);
+        } else {
+          entArr.push(node.key, node.value);
+          return getEntries(node.next, entArr);
+        }
+      }
+    
       return {
+        entries,
+        values,
         keys,
         clear,
         length,
@@ -191,6 +234,8 @@
     console.log(myMap.length());
     // console.log(myMap.clear());
     myMap.keys();
+    myMap.values();
+    myMap.entries();
     // console.log(myMap.map);
 
     // console.log(myHmap.map);
