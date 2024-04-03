@@ -15,13 +15,18 @@ const HashMap = () => {
       return hashCode;
     };
 
+    // check if length is greater than buckets
+    const checkLength = (arrIndex) => {
+        if (arrIndex < 0 || arrIndex >= buckets) {
+            throw new Error("Trying to access index out of bound");
+          }
+    }
+
     // set value
     const set = (key, val) => {
       let arrIndex = hash(key) % buckets;
 
-      if (arrIndex < 0 || arrIndex >= buckets) {
-        throw new Error("Trying to access index out of bound");
-      }
+      checkLength(arrIndex);
 
       if (map[arrIndex] === undefined) {
         console.log("EMPTY!");
@@ -46,9 +51,7 @@ const HashMap = () => {
     const get = (key) => {
       let arrIndex = hash(key) % buckets;
 
-      if (arrIndex < 0 || arrIndex >= buckets) {
-        throw new Error("Trying to access index out of bound");
-      }
+      checkLength(arrIndex);
 
       if (map[arrIndex] === undefined) {
         return null;
@@ -82,9 +85,7 @@ const HashMap = () => {
     const remove = (key) => {
       let arrIndex = hash(key) % buckets;
 
-      if (arrIndex < 0 || arrIndex >= buckets) {
-        throw new Error("Trying to access index out of bound");
-      }
+      checkLength(arrIndex);
 
       if (map[arrIndex] === undefined) {
         return false;
