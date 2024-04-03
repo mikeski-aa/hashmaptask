@@ -37,7 +37,7 @@ const HashSet = () => {
   
     //compare current capacity v.s load factor;
     const loadFactorCompare = () => {
-      let loadFactor = 0.75;
+      const loadFactor = 0.75;
   
       if (capacity() >= loadFactor) {
           buckets = buckets * 2;
